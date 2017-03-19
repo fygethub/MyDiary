@@ -1,0 +1,12 @@
+@import "./variables.css";
+.section {
+    width: 100%;
+    line-height: var(--lineheight);
+    color: var(--default-color);
+    text-align: var(--align);
+    transition: 1s ease;
+    position: absolute;
+    top: 64px;
+    bottom: 56px;
+    overflow: scroll;
+}

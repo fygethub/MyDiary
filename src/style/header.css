@@ -1,0 +1,15 @@
+@import './variables.css';
+.header {
+    text-align: var(--align);
+    color: var(--gray-dark);
+    cursor: pointer;
+    position: absolute !important;
+    top: 0;
+    transition:1s;
+}
+
+.headerRight {
+    font-size: var(--font-size-base);
+}
+
+

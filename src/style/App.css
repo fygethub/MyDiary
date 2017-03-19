@@ -1,0 +1,9 @@
+:root {
+    --lineheight:  200%;
+    --color: yellow;
+}
+
+.app {
+    color: var(--color);
+    transition: 1s ease;
+}
