@@ -8,7 +8,6 @@ import SvgIcon from 'material-ui/SvgIcon';
 import renderLog from  'renderLog';
 import pureRender from 'pureRender';
 
-console.log(styles)
 const _styles = {
     title: {
         cursor: 'pointer',
@@ -54,12 +53,11 @@ class  Header extends  Component {
 
     render() {
         let { match } = this.props;
-        match = match || '日记本'
-        console.log(match);
+        const title = match.params.id || 'Home'
         return (
             <AppBar
                 className={styles.header}
-                title={ match.id }
+                title={ title }
                 onTitleTouchTap={this.handleTouchTap}
                 iconElementLeft={<IconButton><MenuList /></IconButton>}
                 iconElementRight={<FlatButton label={<HeaderRightMenu style={_styles.fontSizeBase }/>} style={ _styles.headerRight } />}

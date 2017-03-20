@@ -29,10 +29,17 @@ class Bottom extends  Component {
     constructor(props){
         super(props);
         this.state = {
-            selectedIndex: 0,
+            selectedIndex: Number(this.props.index),
         };
         this.handleSelect = this.handleSelect.bind(this);
+        console.log('constructor--------------------');
     }
+
+    componentWillMount(){
+        console.log('componentWillMount--------------');
+    }
+
+
 
     handleSelect(index) {
         this.setState({
@@ -41,13 +48,15 @@ class Bottom extends  Component {
     }
 
     render(){
+        let index = this.props.index || this.state.selectedIndex;
+        index = Number(index);
         return(
             <Paper zDepth={1} className={bottomStyle.bottom}>
-                <BottomNavigation selectedIndex={this.state.selectedIndex}>
+                <BottomNavigation selectedIndex={index}>
                     <BottomNavigationItem
-                        icon={<Link to="/content"><HomeIcon color={this.state.selectedIndex === 0 ? greenA200 : grey500 }/></Link> }
+                        icon={<Link to="/"><HomeIcon color={this.state.selectedIndex === 0 ? greenA200 : grey500 }/></Link> }
                         onTouchTap={() => this.handleSelect(0)}
-                        label={ <Link to="/content">Home</Link> }
+                        label={ <Link to="/">Home</Link> }
                     />
                     <BottomNavigationItem
                         icon={<Link to="/lovelist"><HeartIcon color={this.state.selectedIndex === 1 ? greenA200 : grey500 }/></Link> }
