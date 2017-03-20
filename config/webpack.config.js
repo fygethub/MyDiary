@@ -1,8 +1,9 @@
 const {resolve, join} = require('path');
 const webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html
-var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
-var autoprefixer = require('autoprefixer');
+const HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html
+const ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
+const autoprefixer = require('autoprefixer');
+const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 
 const ROOT_PATH = process.cwd();
 //项目根目录
@@ -48,9 +49,7 @@ module.exports = {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: [
-                    {
-                        loader: 'style-loader',
-                    },
+                      'style-loader',
                     {
                         loader: 'css-loader',
                         options: {
@@ -59,12 +58,8 @@ module.exports = {
                             importLoaders: 1,
                         }
                     },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            postcss: [autoprefixer({browsers: ['last 10 Chrome versions', 'last 5 Firefox versions', 'Safari >= 6', 'ie > 8']})]
-                        }
-                    }
+                    'postcss-loader',
+
                 ]
             },
             {
@@ -94,28 +89,28 @@ module.exports = {
                 ]
             },
             /*{
-             test:/\.css$/,
-             use: ExtractTextPlugin.extract({
-             fallback: "style-loader",
-             use: [
-             {
-             loader: "css-loader",
-             options: {
-             sourceMap: true,
-             modules: true,
-             importLoaders: true,
-             localIndentName: "[name]__[local]___[hash:base64:5]"
-             }
-             },
-             {
-             loader: "postcss-loader",
-             options: {
-             postcss: [autoprefixer({ browsers: ['last 10 Chrome versions', 'last 5 Firefox versions', 'Safari >= 6', 'ie > 8'] })]
-             }
-             }
-             ]
-             })
-             }*/
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: [
+                        {
+                            loader: "css-loader",
+                            options: {
+                                sourceMap: true,
+                                modules: true,
+                                importLoaders: true,
+                                localIndentName: "[name]__[local]___[hash:base64:5]"
+                            }
+                        },
+                        {
+                            loader: "postcss-loader",
+                            options: {
+                                postcss: [autoprefixer({browsers: ['last 10 Chrome versions', 'last 5 Firefox versions', 'Safari >= 6', 'ie > 8']})]
+                            }
+                        }
+                    ]
+                })
+            }*/
         ]
     },
 
@@ -136,6 +131,14 @@ module.exports = {
             inject: 'body',
             hash: true,
         }),
+        new LoaderOptionsPlugin({
+            options: {
+                context: '/',
+                postcss: function () {
+                    return [autoprefixer({browsers: ['last 10 Chrome versions', 'last 5 Firefox versions', 'Safari >= 6', 'ie > 8']})];
+                }
+            }
+        })
     ],
 
     resolve: {
