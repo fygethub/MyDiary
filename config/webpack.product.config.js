@@ -2,38 +2,22 @@ const {resolve, join} = require('path');
 const webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin'); //生成html
 var ExtractTextPlugin = require('extract-text-webpack-plugin'); //css单独打包
-
+const autoprefixer = require('autoprefixer');
+const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 const ROOT_PATH = process.cwd();
 //项目根目录
 module.exports = {
     devtool: 'hidden-source-map',
-    entry: [
-        "react-hot-loader/patch",
-        //开启React 代码的模块热替换
-        "webpack-hot-middleware/client",
-        // 为 webpack-dev-server 的环境打包代码
-        // 然后连接到指定服务器域名与端口
-
-        "webpack/hot/only-dev-server",
-        // 为热替换(HMR)打包好代码
-        // only- 意味着只有成功更新运行代码才会执行热替换(HMR)
-
-        resolve(ROOT_PATH, 'src/index.js')
-
-    ],
+    entry:resolve(ROOT_PATH, 'src/dev.js'),
     output: {
         filename: '[name].[chunkhash].js', //编译后的文件名字
         //output file name
 
         path: ROOT_PATH + '/build',
         //output file path dir
-
         publicPath: '/'
-        // 对于热替换(HMR)是必须的，让 webpack 知道在哪里载入热更新的模块(chunk)
     },
-
     context: ROOT_PATH,
-
     module: {
         rules: [
             {
@@ -47,38 +31,52 @@ module.exports = {
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: [
-                        {
-                            loader: "css-loader",
-                            options: {
-                                sourceMap: true,
-                                modules: true,
-                                importLoaders: true,
-                                localIndentName: "[name]__[local]___[hash:base64:5]"
-                            }
-                        },
-                        {
-                            loader: "postcss-loader",
-                            options: {
-                                plugins: function () {
-                                    return [
-                                        require('precss'),
-                                        require("autoprefixer")(),
-                                        require('postcss-import')({
-                                            addDependencyTo: webpack
-                                        })
-                                    ];
+                            "style-loader",
+                            {
+                                loader: "css-loader",
+                                options: {
+                                    sourceMap: false,
+                                    modules: true,
+                                    importLoaders: true,
+                                    localIndentName: "[name]__[local]___[hash:base64:5]"
+                                }
+                            },
+                            "postcss-loader",
+                            {
+                                loader: "sass-loader",
+                                options: {
+                                    sourceMap: true,
                                 }
                             }
-                        },
-                        {
-                            loader: "sass-loader",
-                            options: {
-                                sourceMap: true,
-                            }
-                        }
                     ]
                 })
-            }
+            },
+            {
+                test: /\.(svg|eot|ttf|woff|woff2)$/,
+                exclude: /^node_modules$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'assets/[name].[ext]',
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(gif|png|jpg)$/,
+                exclude: /^node_modules$/,
+                //注意后面那个limit的参数，当你图片大小小于这个限制的时候，会自动启用base64编码图片
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: '8192',
+                            name: 'images/[hash:8].[name].[ext]'
+                        }
+                    },
+                ]
+            },
         ]
     },
 
@@ -88,15 +86,23 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: './index.html',
             template: './src/template/index.html',
-            inject: 'body',
+            inject: true,
             hash: true,
         }),
         new webpack.optimize.UglifyJsPlugin({
             output: {
-                comments: false, // remove all comments
+                comments: true, // remove all comments
             },
             compress: {
-                warnings: false
+                warnings: true
+            }
+        }),
+        new LoaderOptionsPlugin({
+            options: {
+                context: '/',
+                postcss: function () {
+                    return [autoprefixer];
+                }
             }
         })
     ],

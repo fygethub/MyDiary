@@ -135,7 +135,7 @@ module.exports = {
             options: {
                 context: '/',
                 postcss: function () {
-                    return [autoprefixer({browsers: ['last 10 Chrome versions', 'last 5 Firefox versions', 'Safari >= 6', 'ie > 8']})];
+                    return [require('precss'),autoprefixer({browsers: ['last 10 Chrome versions', 'last 5 Firefox versions', 'Safari >= 6', 'ie > 8']})];
                 }
             }
         })
