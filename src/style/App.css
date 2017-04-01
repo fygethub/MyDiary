@@ -6,4 +6,5 @@
 .app {
     color: var(--color);
     transition: 1s ease;
+    background: linear-gradient(mediumvioletred 10%, cornflowerblue 20%);
 }

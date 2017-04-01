@@ -5,6 +5,7 @@ export  default  class LoveList extends Component{
         return (
             <div>
                 <header> LOVE LIST </header>
+
                 <Link to="/location">to location</Link>
             </div>
         )
