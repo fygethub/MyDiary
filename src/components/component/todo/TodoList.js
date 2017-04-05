@@ -3,10 +3,13 @@ import Todo from './Todo';
 
 const TodoList = ({ todos, onTodoClick }) => (
     <ul>
-        {todos.map( todo =>
+        {todos.map( (todo, index) =>
             <Todo
-                key={todos.id}
-                onClick={() => onTodoClick(todo.id)}
+                {...todo}
+                key={todo.id}
+                onClick={() => {
+                    onTodoClick(todo.id);
+                }}
             />
         )}
     </ul>
@@ -15,10 +18,11 @@ const TodoList = ({ todos, onTodoClick }) => (
 TodoList.propTypes = {
     todos: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
-        computed: PropTypes.bool.isRequired,
-        text: PropTypes.string.isRequired,
+        completed: PropTypes.bool.isRequired,
+        text: PropTypes.string.isRequired
     }).isRequired).isRequired,
-    onTodoClick: PropTypes.func.isRequired,
+    onTodoClick: PropTypes.func.isRequired
 }
+
 
 export default TodoList

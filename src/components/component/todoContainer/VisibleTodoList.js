@@ -3,30 +3,32 @@ import { toggleTodo } from  '../../../redux/action'
 import TodoList from '../todo/TodoList'
 
 const getVisibleTodos = (todos, filter) => {
+
      switch (filter.toLowerCase()){
          case 'show_all':
+
              return todos;
-         case 'show_completed':
+         case 'show_computed':
+
              return todos.filter(t => t.completed);
-         case 'show_Active':
+         case 'show_active':
+
              return todos.filter(t => !t.completed);
          default :
+
              return todos;
      }
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
         todos: getVisibleTodos(state.todos, state.visibilityFilter)
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onTodoClick: (id) => {
-            dispatch(toggleTodo(id));
-        }
-    }
+const mapDispatchToProps = {
+    onTodoClick: toggleTodo
 }
 
 const VisibleTodoList = connect(
@@ -34,10 +36,7 @@ const VisibleTodoList = connect(
     mapDispatchToProps
 )(TodoList)
 
-
-
-
-
+export default VisibleTodoList
 
 
 
