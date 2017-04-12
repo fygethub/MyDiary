@@ -13,7 +13,7 @@ export function shalloEqual(prev, next) {
 
 
 function PureRender(Component) {
-    console.log("is update : ",Component.name," this is" + this);
+    //console.log("is update : ",Component.name);
     Component.prototype.shouldComponentUpdate = function (nextProps,nextState){
         return PureRender.prototype.shouldComponentUpdate(nextProps, nextState, this.props, this.state);
     }
