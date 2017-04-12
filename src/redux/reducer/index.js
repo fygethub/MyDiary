@@ -1,10 +1,13 @@
-import { combineReducers } from 'redux';
+import { combineReducers} from 'redux';
 import todos from './todos';
 import visibilityFilter from './visibilityFilter';
+import { selectedReddit, postsByReddit} from './reddit'
 
 const todoApp = combineReducers({
     todos,
-    visibilityFilter
+    visibilityFilter,
+    selectedReddit,
+    postsByReddit
 })
 
 /*const todoApp_ = (state = {}, action) => ({
