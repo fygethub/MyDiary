@@ -9,7 +9,6 @@ import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import SvgIcon from 'material-ui/SvgIcon';
 import { grey500, greenA200} from 'material-ui/styles/colors';
 import { Link } from 'react-router-dom';
-console.log(bottomStyle)
 
 const HomeIcon = (props) => (
     <SvgIcon {...props}>
@@ -32,11 +31,9 @@ class Bottom extends  Component {
             selectedIndex: Number(this.props.index),
         };
         this.handleSelect = this.handleSelect.bind(this);
-        console.log('constructor--------------------');
     }
 
     componentWillMount(){
-        console.log('componentWillMount--------------');
     }
 
 

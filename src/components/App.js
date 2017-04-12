@@ -18,8 +18,8 @@ import {
 
 //const history = process.env.NODE_ENV !== 'production' ? browserHistory : hashHistory;
 
-console.log(process.env.NODE_ENV,'-------------------');
-console.log(appStyle);
+console.log(process.env.NODE_ENV);
+
 
 class App extends  Component {
 
