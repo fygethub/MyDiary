@@ -9,6 +9,7 @@ import Footer from './todo/Footer'
 import AddTodo from './todoContainer/AddTodo'
 import VisibleTodoList from './todoContainer/VisibleTodoList'
 import { selectReddit, fetchPosts } from '../../redux/action'
+import AsyncLoader from '../component/asyncLoadeContainer/AsyncLoader'
 
 const middleware = [ thunk ]
 if(process.env.NODE_ENV !== 'production') {
@@ -20,16 +21,17 @@ let store = createStore(
     applyMiddleware(...middleware)
 );
 
-store.dispatch(selectReddit('reactjs'))
+/*store.dispatch(selectReddit('reactjs'))
 store.dispatch(fetchPosts('reactjs')).then(() =>
     console.log(store.getState())
-)
+)*/
 
 const App = () => (
     <div>
         <AddTodo />
         <VisibleTodoList />
         <Footer />
+        <AsyncLoader/>
     </div>
 )
 
