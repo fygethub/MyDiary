@@ -13,7 +13,6 @@ const Posts = ({ posts}) => (
 )
 
 Posts.propTypes = {
-    posts: PropTypes.arrayOf.isRequired
+    posts: PropTypes.array.isRequired
 }
-
 export default Posts;
