@@ -37,7 +37,7 @@ export const invalidateReddit = reddit => ({
 })
 
 export const requestPosts = reddit => ({
-    type: RECEIVE_POSTS,
+    type: REQUEST_POSTS,
     reddit
 })
 
