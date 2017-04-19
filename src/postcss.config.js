@@ -1,5 +1,4 @@
 
-console.log('postcsssssssssssssssssssssssssssssssssssss1');
 module.exports = {
     plugins: [
         require('precss'),

@@ -14,7 +14,7 @@ export const selectedReddit = (state = 'reactjs', action) => {
     }
 }
 
-const posts = (state ={
+export const posts = (state ={
     isFetching: false,
     didInvalidate: false,
     items: []
