@@ -28,7 +28,6 @@ app.use(webpackDevMiddleware(compiler, {
     }
 }))
 
-
 app.use(require('webpack-hot-middleware')(compiler));
 
 //将其他路由，全部返回index.html
