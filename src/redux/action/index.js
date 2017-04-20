@@ -79,6 +79,14 @@ export const fetchPostsIfNeeded = reddit => (dispatch, getState) => {
 }
 
 
+//加载器
+export const changeLoading = (isLoading) => {
+    return {
+        type: 'START_LOADING',
+        isLoading,
+    }
+}
+
 
 
 
