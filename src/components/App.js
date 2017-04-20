@@ -81,7 +81,7 @@ const RouteConfig =() => (
                     <Route path="/lovelist" component={LoveList}/>
                     <Route path="/location" component={Location}/>
                 </div>
-                <Route path="/" exact component={() => <Bottom index="0"/>}/>
+                <Route path="/" exact component={(props) => {console.log(props,'1---------------------------1'); return (<Bottom index="0"/> ) }}/>
                 <Route path="/lovelist" component={() => <Bottom index="1"/>}/>
                 <Route path="/location" component={() => <Bottom index="2"/>}/>
             </div>
