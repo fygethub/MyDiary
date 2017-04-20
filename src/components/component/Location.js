@@ -5,7 +5,7 @@ export default class  Location extends Component {
         return (
             <section>
                 <h1> locatoion page</h1>
-                <Link to="/lovelist">to LoveList</Link>
+                <Link to="/lovelist">to L oveList</Link>
             </section>
         );
     }
