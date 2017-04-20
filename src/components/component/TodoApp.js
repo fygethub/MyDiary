@@ -10,6 +10,7 @@ import AddTodo from './todoContainer/AddTodo'
 import VisibleTodoList from './todoContainer/VisibleTodoList'
 import { selectReddit, fetchPosts } from '../../redux/action'
 import AsyncLoader from '../component/asyncLoadeContainer/AsyncLoader'
+import LoadingContainer from './LoadingContainer'
 
 const middleware = [ thunk ]
 if(process.env.NODE_ENV !== 'production') {
@@ -32,6 +33,7 @@ const App = () => (
         <VisibleTodoList />
         <Footer />
         <AsyncLoader/>
+        <LoadingContainer/>
     </div>
 )
 
