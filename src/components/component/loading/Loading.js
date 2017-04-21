@@ -1,4 +1,4 @@
-import React,{ propTypes} from 'react';
+import React,{ PropTypes} from 'react';
 import {fountainTextG,fountainTextG_1,fountainTextG_2,fountainTextG_3,fountainTextG_4,fountainTextG_5,fountainTextG_6,fountainTextG_7} from 'style/loading.css'
 
 const  Loading = ({ isLoading, onClose }) => {
@@ -9,9 +9,9 @@ const  Loading = ({ isLoading, onClose }) => {
         return loading;
 }
 
-/*Loading.propTypes = {
-    isLoading: propTypes.bool.isRequired,
-    onClick: propTypes.func.isRequired,
-}*/
+Loading.propTypes = {
+    isLoading: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+}
 
 export default Loading;

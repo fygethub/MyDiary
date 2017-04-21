@@ -10,6 +10,7 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
+
 const mapStateToDispatch = (dispatch, ownProps) => ({
     onClose: (change) => {dispatch(changeLoading(change))}
 })
