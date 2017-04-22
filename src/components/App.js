@@ -1,6 +1,6 @@
 import React,{ Component } from "react";
 import appStyle from "../style/App.css";
-import 'style/reset.css';
+//import 'style/reset.css';
 import contentStyles from '../style/content.css'
 import Header from './common/Header';
 import Content from "./component/Content"

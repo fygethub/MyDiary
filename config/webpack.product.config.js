@@ -26,7 +26,7 @@ module.exports = {
                     'babel-loader',
                 ],
                 exclude: /node_modules/,
-            }, {
+            }/*, {
                 test: /(\.css|\.scss)$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
@@ -41,15 +41,25 @@ module.exports = {
                                     localIndentName: "[name]__[local]___[hash:base64:5]"
                                 }
                             },
-                            "postcss-loader",
-                            {
-                                loader: "sass-loader",
-                                options: {
-                                    sourceMap: true,
-                                }
-                            }
+                            "postcss-loader"
                     ]
                 })
+            }*/,
+            {
+                test: /\.css$/,
+                exclude: /node_modules/,
+                use: [
+                    'style-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            sourceMap: true,
+                            importLoaders: 1,
+                        }
+                    },
+                    'postcss-loader',
+                ]
             },
             {
                 test: /\.(svg|eot|ttf|woff|woff2)$/,
@@ -101,7 +111,7 @@ module.exports = {
             options: {
                 context: '/',
                 postcss: function () {
-                    return [autoprefixer];
+                    return [require('precss'),autoprefixer({browsers: ['last 10 Chrome versions', 'last 5 Firefox versions', 'Safari >= 6', 'ie > 8']})];
                 }
             }
         })
