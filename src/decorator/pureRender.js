@@ -3,7 +3,7 @@ export function shalloEqual(prev, next) {
     const prevKeys = Object.keys(prev);
     const nextKeys = Object.keys(next);
 
-    if(prevKeys.length !== nextKeys) return false;
+    if(prevKeys.length !== nextKeys.length) return false;
 
     return prevKeys.every((key) => {
         return prevKeys.hasOwnProperty(key) && prevKeys[key] === nextKeys[key];
