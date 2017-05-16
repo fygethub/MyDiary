@@ -28,7 +28,7 @@
 
     /*Links*/
     --link-color:                var(--brand-info);
-    --link-hover-color:          color(var(--link-color) lightness(- 15%));
+    --link-hover-color:          color(var(--link-color) lightness(-15%));
 
     /*Font*/
     --font-family-sans-serif:     "微软雅黑", "宋体", "Helvetica Neue", Helvetica, Arial, sans-serif;
